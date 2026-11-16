@@ -1,0 +1,37 @@
+/* One shared, responsive header and footer for every PrivateGateKey public page.
+   Inspired by the KL-MEHANNA / DOM-EDGE product-family design. */
+.pgk-shell-header,.pgk-shell-footer{box-sizing:border-box;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.pgk-shell-header *,.pgk-shell-footer *{box-sizing:border-box}
+.pgk-shell-container{width:min(calc(100% - 48px),1240px);margin-inline:auto}
+.pgk-shell-header{position:sticky;top:0;z-index:1000;color:#fff;background:rgba(7,21,39,.97);border-bottom:1px solid rgba(223,187,119,.26);box-shadow:0 10px 32px rgba(5,17,31,.08);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.pgk-shell-header-inner{display:flex;align-items:center;min-height:76px;gap:24px}
+.pgk-shell-logo{display:inline-flex;flex:0 0 auto;align-items:center;gap:12px;text-decoration:none!important;color:#fff!important;white-space:nowrap;font-size:23px;line-height:1.1;font-weight:800;letter-spacing:-.055em}
+.pgk-shell-logo img,.pgk-shell-footer-brand img{display:block;flex:0 0 auto;border:1px solid rgba(225,185,114,.5);border-radius:12px;object-fit:cover}
+.pgk-shell-logo>span>span,.pgk-shell-footer-brand strong>span{color:#eccb8d}
+.pgk-shell-nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(10px,1.3vw,21px);margin-left:auto;min-width:0;flex-wrap:nowrap}
+.pgk-shell-nav>a{display:inline-flex;align-items:center;white-space:nowrap;font-size:12.5px;font-weight:650;line-height:1.4;text-decoration:none!important;color:#cbd5df!important;padding:11px 1px;border-radius:8px;transition:color .15s}
+.pgk-shell-nav>a:hover,.pgk-shell-nav>a[aria-current="page"]{color:#f1d49c!important}
+.pgk-shell-nav>.pgk-shell-company{border:1px solid rgba(234,198,136,.3);border-radius:999px;background:rgba(237,201,140,.095);padding:10px 14px;color:#e9cb91!important;font-weight:750}
+.pgk-shell-nav>.pgk-shell-company:hover{border-color:rgba(234,198,136,.7);background:rgba(237,201,140,.18)}
+.pgk-shell-menu{display:none;align-items:center;justify-content:center;margin-left:auto;border:1px solid rgba(236,203,145,.45);border-radius:11px;background:#192b41;color:#edd098;min-width:44px;min-height:42px;cursor:pointer}
+.pgk-shell-header a:focus-visible,.pgk-shell-header button:focus-visible,.pgk-shell-footer a:focus-visible{outline:3px solid #f3dba5;outline-offset:4px}
+html[lang="fr"] .pgk-shell-en{display:none!important}
+html[lang="en"] .pgk-shell-fr{display:none!important}
+html:not([lang="fr"]):not([lang="en"]) .pgk-shell-fr{display:none!important}
+.pgk-shell-footer{color:#d7e0ea;background:radial-gradient(circle at 10% 10%,rgba(39,67,95,.35),transparent 37%),linear-gradient(135deg,#071528,#0b1e34 65%,#0a1729);border-top:1px solid rgba(222,185,119,.24);padding:57px 0 25px}
+.pgk-shell-footer-grid{display:grid;grid-template-columns:minmax(245px,1.85fr) repeat(3,minmax(130px,1fr));gap:clamp(22px,3vw,46px)}
+.pgk-shell-footer-brand{display:inline-flex;align-items:center;gap:12px;color:#fff!important;text-decoration:none!important}
+.pgk-shell-footer-brand strong{font-size:23px;line-height:1.1;letter-spacing:-.035em}
+.pgk-shell-footer-about>p{max-width:330px;margin:19px 0 15px;font-size:13px;line-height:1.85;color:#aebfd0!important}
+.pgk-shell-footer-tag{color:#d4b67f;font-size:10px;letter-spacing:.16em;font-weight:800}
+.pgk-shell-footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
+.pgk-shell-footer-column h2{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;color:#f6e0b8!important;font-size:11px!important;font-weight:800!important;letter-spacing:.15em!important;line-height:1.2!important;text-transform:uppercase;margin:3px 0 10px!important}
+.pgk-shell-footer-column a{display:inline-block;text-decoration:none!important;color:#becad6!important;font-size:13px!important;line-height:1.6}
+.pgk-shell-footer-column a:hover{color:#f2d59d!important}
+.pgk-shell-footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:23px;margin-top:47px;border-top:1px solid rgba(255,255,255,.14);font-size:11.5px;line-height:1.6;color:#91a5b8}
+.pgk-shell-footer-bottom a{color:#e1c58d!important;text-decoration:none!important}
+@media(max-width:1160px){.pgk-shell-nav{gap:11px}.pgk-shell-nav>a{font-size:12px}.pgk-shell-logo{font-size:20px}}
+@media(max-width:1040px){.pgk-shell-menu{display:inline-flex}.pgk-shell-nav{display:none;position:absolute;top:100%;left:0;right:0;z-index:10;margin:0;padding:19px max(24px,calc((100vw - 1240px)/2)) 24px;background:#0c2038;border-top:1px solid rgba(234,198,136,.12);border-bottom:1px solid rgba(234,198,136,.35);box-shadow:0 20px 35px rgba(4,13,27,.35);flex-direction:column;align-items:stretch;gap:4px}.pgk-shell-nav[data-open="1"]{display:flex}.pgk-shell-nav>a{font-size:15px;line-height:1.6;padding:11px 12px;white-space:normal}.pgk-shell-nav>a:hover,.pgk-shell-nav>a[aria-current="page"]{background:rgba(234,198,136,.085)}.pgk-shell-nav>.pgk-shell-company{margin-top:10px;align-self:flex-start;padding:11px 15px}.pgk-shell-header-inner{min-height:70px}.pgk-shell-footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}.pgk-shell-footer-about{grid-column:1/-1}.pgk-shell-footer-about>p{max-width:550px;margin:12px 0}}
+@media(max-width:600px){.pgk-shell-container{width:calc(100% - 36px)}.pgk-shell-header-inner{min-height:68px}.pgk-shell-logo{font-size:21px;gap:10px}.pgk-shell-logo img{width:39px;height:39px}.pgk-shell-nav{padding-inline:18px}.pgk-shell-footer{padding:41px 0 23px}.pgk-shell-footer-grid{grid-template-columns:1fr 1fr;gap:29px 20px}.pgk-shell-footer-about{grid-column:1/-1}.pgk-shell-footer-column h2{margin-bottom:4px!important}.pgk-shell-footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;margin-top:35px}.pgk-shell-footer-column a{font-size:12px!important}}
+@media(max-width:350px){.pgk-shell-footer-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.pgk-shell-nav>a{transition:none}}
