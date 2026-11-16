@@ -1,0 +1,24 @@
+/* PrivateGateKey public product website: dark navy / champagne gold. */
+.pgk-nav{position:sticky;top:0;z-index:100;background:rgba(7,22,43,.98);border-bottom:1px solid rgba(233,196,123,.27);backdrop-filter:blur(18px);color:#fff}
+.pgk-nav-inner{display:flex;align-items:center;gap:32px;min-height:78px}
+.pgk-brand{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-size:24px;white-space:nowrap;font-weight:850;letter-spacing:-.035em}
+.pgk-brand img,.pgk-footer-brand img{flex-shrink:0;border-radius:11px;border:1px solid rgba(238,204,139,.4)}
+.pgk-brand>span>span{color:#edd08b}
+.pgk-links{display:flex;align-items:center;gap:23px;margin-left:auto}
+.pgk-links a{font-size:13px;font-weight:700;text-decoration:none;color:#cbd7e4}
+.pgk-links a:hover,.pgk-links a:focus-visible{color:#f4dca7}
+.pgk-company-link{border:1px solid #e9c78055;border-radius:999px;padding:10px 14px;background:#e9c78017;color:#edcc87!important}
+.pgk-menu{display:none;margin-left:auto;color:#f4dca7;background:transparent;border:1px solid #e9c78077;border-radius:12px;padding:5px 11px;font-size:25px;cursor:pointer}
+.pgk-nav a:focus-visible,.pgk-menu:focus-visible{outline:3px solid #e9c780;outline-offset:4px}
+.pgk-footer{background:#07162c;color:#b5c5d6;padding:55px 0 25px}
+.pgk-footer-grid{display:flex;justify-content:space-between;align-items:start;gap:25px}
+.pgk-footer-brand{display:flex;align-items:center;gap:12px;color:#fff;font-size:24px}
+.pgk-footer-grid p{max-width:400px;margin:15px 0;color:#aebfd3}
+.pgk-footer-links{display:grid;grid-template-columns:1fr 1fr;gap:16px 30px}
+.pgk-footer-links a{color:#eed297;font-size:14px}
+.pgk-footer-links a:hover{color:#fff}
+.pgk-footer-bottom{border-top:1px solid #ffffff26;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12px;margin-top:38px;padding-top:20px;color:#92a6bc}
+.pgk-footer-bottom a{color:#e8c883}
+@media(max-width:1160px){.pgk-links{gap:14px}.pgk-brand{font-size:20px}.pgk-links a{font-size:12px}}
+@media(max-width:980px){.pgk-menu{display:block}.pgk-links{display:none;position:absolute;top:100%;left:0;right:0;background:#081b33;border-bottom:1px solid #e9c78077;padding:20px 5vw 26px;box-shadow:0 16px 32px #0007;flex-direction:column;align-items:stretch;gap:19px}.pgk-links[data-open="1"]{display:flex}.pgk-links a{font-size:16px}.pgk-company-link{align-self:flex-start}}
+@media(max-width:640px){.pgk-nav-inner{min-height:70px}.pgk-brand{font-size:22px}.pgk-footer{padding-top:40px}.pgk-footer-grid{flex-direction:column}.pgk-footer-links{grid-template-columns:1fr 1fr;gap:14px 24px}}
