@@ -155,10 +155,10 @@ body{
 }
 
 /* Alternating sections across every page */
-main>section:nth-of-type(odd):not(.dark):not(.contact-section){
+main>section:nth-of-type(odd):not(.dark):not(.contact-section):not([class*="privategatekey-"]){
   background:linear-gradient(180deg,rgba(255,255,255,.44),rgba(241,247,253,.72));
 }
-main>section:nth-of-type(even):not(.dark):not(.contact-section){
+main>section:nth-of-type(even):not(.dark):not(.contact-section):not([class*="privategatekey-"]){
   background:
     radial-gradient(circle at 10% 10%,rgba(32,201,166,.06),transparent 26%),
     radial-gradient(circle at 90% 80%,rgba(123,92,255,.07),transparent 28%),
