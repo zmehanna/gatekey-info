@@ -2,7 +2,8 @@
 
 Official product website at https://privategatekey.com/.
 
-- Homepage: /
+- Homepage: / (existing approved bilingual premium site)
+- In-depth presentation: /products/privategatekey/
 - Support: /support.html
 - Privacy: /privacy.html
 
