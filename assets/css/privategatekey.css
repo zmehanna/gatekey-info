@@ -78,3 +78,15 @@
 @media(max-width:640px){.privategatekey-hero{padding:44px 0 58px}.privategatekey-hero h1{font-size:clamp(40px,11vw,57px)}.privategatekey-brand-lockup img{width:64px;height:64px}.privategatekey-brand-lockup strong{font-size:29px}.privategatekey-overline{font-size:9px}.privategatekey-hero .privategatekey-lead{font-size:16px}.privategatekey-feature-grid,.privategatekey-role-grid,.privategatekey-gallery-grid{grid-template-columns:1fr}.privategatekey-hero-photo{height:310px}.privategatekey-hero-visual:before{display:none}.privategatekey-float-card{padding:10px 13px;left:12px;bottom:30px}.privategatekey-intro,.privategatekey-roles,.privategatekey-gallery,.privategatekey-architecture,.privategatekey-bottom{padding:60px 0}.privategatekey-centered-head{margin-bottom:32px}.privategatekey-role-grid article{padding:27px 24px}.privategatekey-gallery-grid img{height:240px}.privategatekey-architecture-points span{padding:14px}.privategatekey-bottom-inner{grid-template-columns:1fr;text-align:center;justify-items:center}.privategatekey-bottom-inner .actions{grid-column:1;justify-content:center}.privategatekey-home{padding:60px 0}.privategatekey-home-shell{border-radius:25px}.privategatekey-home-copy{padding:33px 23px}.privategatekey-home-copy>p{font-size:16px}.privategatekey-home-image{min-height:240px}.privategatekey-home-image-label{right:14px;bottom:13px}}
 html[dir="rtl"] .privategatekey-home-shell,html[dir="rtl"] .privategatekey-hero-layout,html[dir="rtl"] .privategatekey-role-grid,html[dir="rtl"] .privategatekey-architecture-layout{direction:rtl}
 html[dir="rtl"] .privategatekey-architecture-points span:before{margin-left:14px;margin-right:0}
+
+/* The same authentic screenshots as on the main PrivateGateKey landing page. */
+.pgk-product-shots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:start}
+.pgk-product-shot{min-width:0;margin:0;overflow:hidden;border:1px solid #d9e1ea;border-radius:21px;background:#fff;box-shadow:0 16px 38px #0f203518}
+.pgk-product-shot>a{display:block;padding:10px;background:linear-gradient(155deg,#101e32,#243950)}
+.pgk-product-shot img{display:block;width:100%;height:auto;aspect-ratio:738/1600;object-fit:contain;border-radius:12px}
+.pgk-product-shot figcaption{display:flex;flex-direction:column;gap:6px;padding:16px 14px 20px}
+.pgk-product-shot-number{color:#a67d3c;font-size:10px;font-weight:850;letter-spacing:.15em}
+.pgk-product-shot figcaption strong{font-size:14px;color:#10213b;line-height:1.3}
+.pgk-product-shot figcaption small{color:#657486;font-size:11px;line-height:1.6}
+@media(max-width:1100px){.pgk-product-shots{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.pgk-product-shots{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(220px,72vw);overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:3px 1px 18px;scrollbar-width:thin}.pgk-product-shot{scroll-snap-align:start}.pgk-product-shot figcaption{padding:13px}}
