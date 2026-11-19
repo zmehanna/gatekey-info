@@ -1,7 +1,7 @@
-﻿{
-    "version":  "1.0.2",
+{
+    "version":  "1.0.3",
     "filename":  "PrivateGateKey-Android.apk",
     "url":  "https://github.com/zmehanna/gatekey-info/releases/download/android-latest/PrivateGateKey-Android.apk",
-    "sha256":  "f8e8a732ddd8ed27fbf0dae3a184d7cefa50e4484aa2f9c8f600d487c0a46416",
-    "publishedAt":  "2026-11-19T17:35:29Z"
+    "sha256":  "32a43ef885d748fd4b5adf56f17efe427c051edb80010e7d5a19ce40db090acf",
+    "publishedAt":  "2026-11-19T18:14:26Z"
 }
