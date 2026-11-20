@@ -15,34 +15,10 @@ if ([IO.Path]::GetFileName($apk) -notmatch '(?i)(preview|demo).*\.apk$') {
 }
 if ((Get-Item -LiteralPath $apk).Length -lt 1000000) { throw "APK de demonstration suspect" }
 
-# A public emulator must never use a production or gate-capable APK.
-$sdk = if ($env:ANDROID_SDK_ROOT) { $env:ANDROID_SDK_ROOT } else { $env:ANDROID_HOME }
-$aapt = $null
-if ($sdk -and (Test-Path -LiteralPath (Join-Path $sdk "build-tools"))) {
-  $buildTools = Get-ChildItem (Join-Path $sdk "build-tools") -Directory | Sort-Object Name -Descending
-  foreach ($dir in $buildTools) {
-    $candidate = Join-Path $dir.FullName "aapt.exe"
-    if (Test-Path -LiteralPath $candidate) { $aapt = $candidate; break }
-  }
-}
-if (!$aapt) {
-  $aaptCommand = Get-Command aapt.exe -ErrorAction SilentlyContinue
-  if ($aaptCommand) { $aapt = $aaptCommand.Source }
-}
-if (!$aapt) { throw "aapt.exe (Android SDK build-tools) requis pour verifier l'APK demo" }
-$badging = (& $aapt dump badging $apk 2>&1 | Out-String)
-if ($LASTEXITCODE -ne 0) { throw "Echec de lecture du package APK" }
-if ($badging -notmatch "package:\s+name='com\.klmehanna\.privategatekey\.demo'") {
-  throw "Refus: package Android non isole (suffixe .demo requis)"
-}
-$requiredVersion = [regex]::Escape($Version + "-demo")
-if ($badging -notmatch "versionName='$requiredVersion'") {
-  throw "Refus: version de l'emulateur incompatible avec l'APK publie"
-}
-$permissions = (& $aapt dump permissions $apk 2>&1 | Out-String)
-if ($LASTEXITCODE -ne 0 -or $permissions -match "android\.permission\.INTERNET") {
-  throw "Refus: l'APK de demonstration ne doit pas disposer d'acces Internet"
-}
+# Verify the COMPILED binary AndroidManifest using Python standard-library only.
+# A separate appId and absence of the INTERNET permission are mandatory.
+& python (Join-Path $PSScriptRoot "verify_preview_apk.py") $apk $Version
+if ($LASTEXITCODE -ne 0) { throw "Verification du manifeste hors ligne echouee : aucun upload Appetize" }
 $previous = $null
 if (Test-Path -LiteralPath $MetadataPath) {
   $previous = Get-Content -LiteralPath $MetadataPath -Raw | ConvertFrom-Json
