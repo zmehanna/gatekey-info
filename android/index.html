@@ -28,6 +28,12 @@ h1 em{font-weight:400;font-style:normal;color:var(--gold)}
 .version i{width:8px;height:8px;background:#76d7b0;border-radius:50%}
 .download{display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:12px;background:linear-gradient(130deg,#ffe7b4,#d9b675,#b98e54);color:#101e2f;font-weight:800;font-size:15px;border:1px solid #fff6;padding:18px 27px;border-radius:10px;box-shadow:0 15px 38px #02091350;margin:22px 0 8px}
 .download:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.demo-actions{display:flex;align-items:center;flex-wrap:wrap;gap:13px;margin:10px 0 16px}
+.demo-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 23px;border:1px solid #e9ca8c89;background:#f1d59d12;color:#ffe1ad;border-radius:10px;font-size:14px;font-weight:750;min-height:52px;transition:background .15s ease}
+.demo-link[href]:hover{background:#e6c88e2b;transform:translateY(-1px)}
+.demo-link:not([href]){opacity:.55;cursor:not-allowed}
+.demo-status{color:#b9c8d6;font-size:12px;line-height:1.5}
+
 .small{font-size:12px;line-height:1.7;color:#9cb0c3}
 .art{justify-self:center;width:min(100%,332px);border-radius:27px;padding:29px;background:linear-gradient(140deg,#233e5b,#0d2039);border:1px solid #d7b98a70;box-shadow:0 40px 65px #0005}
 .art img{display:block;width:118px;height:118px;border-radius:25px;margin:10px auto 27px;box-shadow:0 10px 28px #0006}
@@ -77,6 +83,8 @@ h2{font-family:Georgia,serif;font-size:34px;font-weight:400;margin:6px 0 28px}
     <p class="lead">Retrouvez PrivateGateKey sur votre téléphone Android, avec la même identité bleu nuit et or que sur iPhone. La version bêta inclut une démonstration locale, également utilisable avec BlueStacks.</p>
     <div class="version"><i aria-hidden="true"></i> Dernière version disponible · <strong>Dernière version Android</strong></div>
     <div><a class="download" href="https://github.com/zmehanna/gatekey-info/releases/download/android-latest/PrivateGateKey-Android.apk" download="PrivateGateKey-Android.apk" type="application/vnd.android.package-archive">⬇ Télécharger la dernière version APK</a></div>
+    <div class="demo-actions"><a id="try-android" class="demo-link" role="button" aria-disabled="true" tabindex="-1">▷ Tester Android depuis Safari</a><span id="emulator-status" class="demo-status" role="status" aria-live="polite">Prévisualisation Android en préparation</span></div>
+    <p class="small">Sur iPhone : le bouton « Tester Android » ouvre un Android virtuel en mode démonstration hors ligne, sans accès aux équipements. Il sera activé uniquement quand la version correspondante sera disponible.</p>
     <p class="small">APK de test Android · nécessite Android 9 ou ultérieur. La dernière version uniquement est hébergée par GitHub Releases. Pour remplacer un ancien APK de test, une désinstallation préalable peut être nécessaire si sa signature diffère.</p>
   </div>
   <div class="art" aria-label="PrivateGateKey pour Android">
@@ -93,7 +101,7 @@ h2{font-family:Georgia,serif;font-size:34px;font-weight:400;margin:6px 0 28px}
     <article class="step"><div class="num">02</div><h3>Installer PrivateGateKey</h3><p>Ouvrez le fichier sur Android ou glissez-le dans la fenêtre BlueStacks. Autorisez l'installation depuis cette source si demandé.</p></article>
     <article class="step"><div class="num">03</div><h3>Activer ou explorer</h3><p>Un téléphone compatible peut activer une invitation. Sur BlueStacks, utilisez « Essayer le mode démonstration » pour parcourir l'interface sans action réelle.</p></article>
   </div>
-  <div class="notice"><span class="note-icon" aria-hidden="true">🔒</span><span><strong>Sécurité :</strong> la version bêta ne dispense jamais de l'enregistrement nominatif et de la biométrie forte requis pour toute commande physique. L'émulateur BlueStacks permet uniquement la démonstration sans connexion au dispositif. La compatibilité Android du serveur doit être validée avant l'activation réelle.</span></div>
+  <div class="notice"><span class="note-icon" aria-hidden="true">🔒</span><span><strong>Sécurité :</strong> la version bêta ne dispense jamais de l'enregistrement nominatif et de la biométrie forte requis pour toute commande physique. Les émulateurs BlueStacks et Appetize.io permettent uniquement une démonstration hors ligne, sans connexion au dispositif. La compatibilité Android du serveur doit être validée avant l'activation réelle.</span></div>
 </section>
 <section class="footer-action container"><a href="/">← Retour à PrivateGateKey</a><a href="/support.html">Assistance</a><a href="https://apps.apple.com/fr/app/privategatekey/id6835128588" target="_blank" rel="noopener noreferrer">Version iPhone sur l'App Store</a></section>
 </main>
