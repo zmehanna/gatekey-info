@@ -1,6 +1,7 @@
 param(
   [Parameter(Mandatory=$true)][string]$ApkPath,
   [Parameter(Mandatory=$true)][string]$Version,
+  [string]$DemoApkPath = "",
   [string]$Repository = "zmehanna/gatekey-info"
 )
 $ErrorActionPreference = "Stop"
@@ -29,6 +30,25 @@ try {
     & gh release upload android-latest $target --repo $Repository --clobber
     if ($LASTEXITCODE -ne 0) { throw "Envoi de l'APK échoué" }
   } finally { Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue }
+  # When available, update the browser emulator with the separate, offline-only APK.
+  # This is never the production APK and failure must not block normal downloads.
+  if ([string]::IsNullOrWhiteSpace($DemoApkPath)) {
+    $apkVariants = Split-Path -Parent (Split-Path -Parent $apk)
+    $siblingPreview = Join-Path $apkVariants "preview\app-preview.apk"
+    if (Test-Path -LiteralPath $siblingPreview -PathType Leaf) { $DemoApkPath = $siblingPreview }
+  }
+  if (![string]::IsNullOrWhiteSpace($DemoApkPath)) {
+    if ($env:APPETIZE_API_TOKEN) {
+      try {
+        & (Join-Path $root "scripts\publish_emulator.ps1") -DemoApkPath $DemoApkPath -Version $Version -MetadataPath (Join-Path $root "android\emulator.json")
+        Write-Output "Demonstration Android Appetize synchronisee."
+      } catch {
+        Write-Warning "Emulateur non actualise : $($_.Exception.Message). La version classique reste publiee."
+      }
+    } else {
+      Write-Warning "APPETIZE_API_TOKEN absent : la demonstration cloud est indisponible."
+    }
+  }
   $digest = (Get-FileHash -LiteralPath $apk -Algorithm SHA256).Hash.ToLowerInvariant()
   $metadata = [ordered]@{
     version = $Version
@@ -39,7 +59,7 @@ try {
   }
   $json = $metadata | ConvertTo-Json
   [System.IO.File]::WriteAllText((Join-Path $root "android\latest.json"), $json + "`n", [System.Text.UTF8Encoding]::new($false))
-  git add android/latest.json
+  git add android/latest.json android/emulator.json
   git commit -m "Android: publish $Version as latest APK"
   if ($LASTEXITCODE -ne 0) { throw "Commit métadonnées échoué" }
   git push origin main
