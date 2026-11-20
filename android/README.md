@@ -17,7 +17,7 @@ until an offline preview is published.
 The script detects an adjacent preview/app-preview.apk automatically if
 -DemoApkPath was omitted. Before uploading, it verifies the different
 package name (com.klmehanna.privategatekey.demo), matching versionName
-and absence of INTERNET permission via Android SDK aapt.exe.
+and absence of INTERNET permission via the included Python 3 manifest verifier.
 
 If APPETIZE_PUBLIC_KEY is configured, the upload updates that Appetize app.
 Otherwise the first upload creates one. Its publicKey is retained in
