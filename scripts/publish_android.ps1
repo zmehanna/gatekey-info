@@ -33,9 +33,11 @@ try {
   # When available, update the browser emulator with the separate, offline-only APK.
   # This is never the production APK and failure must not block normal downloads.
   if ([string]::IsNullOrWhiteSpace($DemoApkPath)) {
+    $sameFolder = Join-Path (Split-Path -Parent $apk) "app-preview.apk"
     $apkVariants = Split-Path -Parent (Split-Path -Parent $apk)
     $siblingPreview = Join-Path $apkVariants "preview\app-preview.apk"
-    if (Test-Path -LiteralPath $siblingPreview -PathType Leaf) { $DemoApkPath = $siblingPreview }
+    if (Test-Path -LiteralPath $sameFolder -PathType Leaf) { $DemoApkPath = $sameFolder }
+    elseif (Test-Path -LiteralPath $siblingPreview -PathType Leaf) { $DemoApkPath = $siblingPreview }
   }
   if (![string]::IsNullOrWhiteSpace($DemoApkPath)) {
     if ($env:APPETIZE_API_TOKEN) {
