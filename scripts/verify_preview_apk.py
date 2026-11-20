@@ -73,7 +73,7 @@ def inspect_manifest(data):
         if chunk_type == 0x0001:
             strings = read_string_pool(data, position, size, header)
         elif chunk_type == 0x0102:
-            if strings is None or header < 36:
+            if strings is None or header < 16:
                 raise ValueError("Android XML start element before string pool")
             name_id = u32(data, position + 20)
             if name_id >= len(strings):
