@@ -10,7 +10,7 @@
     const response = await fetch("/android/latest.json", { cache: "no-store" });
     if (!response.ok) throw new Error("Metadata unavailable");
     const latest = await response.json();
-    if (!/^\\d+\\.\\d+\\.\\d+([-.][a-z0-9.-]+)?$/i.test(latest.version)) throw new Error("Invalid version");
+    if (!/^\d+\.\d+\.\d+([-.][a-z0-9.-]+)?$/i.test(latest.version)) throw new Error("Invalid version");
     if (typeof latest.url !== "string" ||
         !latest.url.startsWith("https://github.com/zmehanna/gatekey-info/releases/download/android-latest/")) {
       throw new Error("Invalid download");
