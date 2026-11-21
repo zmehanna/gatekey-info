@@ -61,7 +61,13 @@ try {
   }
   $json = $metadata | ConvertTo-Json
   [System.IO.File]::WriteAllText((Join-Path $root "android\latest.json"), $json + "`n", [System.Text.UTF8Encoding]::new($false))
-  git add android/latest.json android/emulator.json
+  # The JavaScript reads latest.json, but keep the no-JavaScript/SEO fallback current too.
+  $indexPath = Join-Path $root "android\index.html"
+  $indexHtml = [System.IO.File]::ReadAllText($indexPath, [System.Text.Encoding]::UTF8)
+  $indexHtml = [regex]::Replace($indexHtml, '(?<=<strong>Android )\d+\.\d+\.\d+(?=\s)', $Version)
+  $indexHtml = [regex]::Replace($indexHtml, '(?<=<span>Version )\d+\.\d+\.\d+(?=</span>)', $Version)
+  [System.IO.File]::WriteAllText($indexPath, $indexHtml, [System.Text.UTF8Encoding]::new($false))
+  git add android/latest.json android/emulator.json android/index.html
   git commit -m "Android: publish $Version as latest APK"
   if ($LASTEXITCODE -ne 0) { throw "Commit métadonnées échoué" }
   git push origin main
