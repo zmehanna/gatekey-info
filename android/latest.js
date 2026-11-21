@@ -53,3 +53,61 @@
     previewStatus.textContent = "Démo cloud indisponible : publication Appetize en attente";
   }
 })();
+
+/*
+ * Keep the Android download page current while it remains open.
+ * Check the deployed script and APK metadata without using cached responses.
+ * A changed deployment reloads the page; an unchanged one never does.
+ */
+(function watchAndroidPageUpdates() {
+  const intervalMs = 60000;
+  const scriptPath = "/android/latest.js";
+  const metadataPath = "/android/latest.json";
+  let baselineScript = null;
+  let baselineVersion = null;
+  let checking = false;
+  let reloading = false;
+
+  async function readText(path) {
+    const url = path + "?_check=" + Date.now();
+    const response = await fetch(url, { cache: "no-store", credentials: "same-origin" });
+    if (!response.ok) throw new Error("Update check unavailable");
+    return response.text();
+  }
+
+  async function check() {
+    if (checking || reloading || !navigator.onLine) return;
+    checking = true;
+    try {
+      const [script, metadata] = await Promise.all([
+        readText(scriptPath),
+        readText(metadataPath)
+      ]);
+      const version = JSON.parse(metadata).version;
+      if (baselineScript === null || baselineVersion === null) {
+        baselineScript = script;
+        baselineVersion = version;
+      } else if (script !== baselineScript || version !== baselineVersion) {
+        reloading = true;
+        // Bypass a stale cached HTML document on the next navigation.
+        const url = new URL(window.location.href);
+        url.searchParams.set("_updated", Date.now().toString());
+        window.location.replace(url.href);
+      }
+    } catch (error) {
+      // Keep the existing page usable when offline or during deployment.
+      console.debug("Android page update check deferred", error);
+    } finally {
+      checking = false;
+    }
+  }
+
+  check();
+  setInterval(() => {
+    if (document.visibilityState === "visible") check();
+  }, intervalMs);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") check();
+  });
+  window.addEventListener("online", check);
+})();
