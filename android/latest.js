@@ -1,13 +1,17 @@
 (async function () {
-  const badge = document.querySelector(".version strong");
+  const badge = document.getElementById("android-latest-version");
   const button = document.querySelector("a.download");
-  const artVersion = document.querySelector(".art .bar span:last-child");
+  const artVersion = document.getElementById("android-card-version");
+  const releaseMeta = document.getElementById("android-release-meta");
   const previewButton = document.querySelector("#try-android");
   const previewStatus = document.querySelector("#emulator-status");
   let latestVersion = null;
 
   try {
-    const response = await fetch("/android/latest.json", { cache: "no-store" });
+    // Bust both browser and CDN caches; the published manifest is the
+    // authoritative source of the visible version and release timestamp.
+    const response = await fetch("/android/latest.json?_v=" + Date.now(),
+      { cache: "no-store", credentials: "same-origin" });
     if (!response.ok) throw new Error("Metadata unavailable");
     const latest = await response.json();
     if (!/^\d+\.\d+\.\d+([-.][a-z0-9.-]+)?$/i.test(latest.version)) throw new Error("Invalid version");
@@ -16,8 +20,18 @@
       throw new Error("Invalid download");
     }
     latestVersion = latest.version;
-    if (badge) badge.textContent = "Android " + latestVersion + " Bêta";
+    if (badge) badge.textContent = "Android " + latestVersion + " bêta";
     if (artVersion) artVersion.textContent = "Version " + latestVersion;
+    if (releaseMeta && typeof latest.publishedAt === "string") {
+      const published = new Date(latest.publishedAt);
+      if (!Number.isNaN(published.getTime())) {
+        const date = new Intl.DateTimeFormat("fr-FR", {
+          day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Paris"
+        }).format(published);
+        releaseMeta.textContent =
+          "Dernière publication : " + date + " · Version vérifiée automatiquement.";
+      }
+    }
     if (button) {
       button.href = latest.url;
       button.setAttribute("download", latest.filename || "PrivateGateKey-Android.apk");

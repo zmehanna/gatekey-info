@@ -81,8 +81,9 @@ h2{font-family:Georgia,serif;font-size:34px;font-weight:400;margin:6px 0 28px}
     <div class="eyebrow">PrivateGateKey · Android</div>
     <h1>La même expérience premium, <em>sur Android.</em></h1>
     <p class="lead">Retrouvez PrivateGateKey sur votre téléphone Android, avec la même identité bleu nuit et or que sur iPhone. La version bêta inclut une démonstration locale, également utilisable avec BlueStacks.</p>
-    <div class="version"><i aria-hidden="true"></i> Dernière version disponible · <strong>Android 1.0.18 bêta</strong></div>
+    <div class="version" role="status" aria-live="polite" aria-atomic="true"><i aria-hidden="true"></i> Dernière version disponible · <strong id="android-latest-version">Android 1.0.29 bêta</strong></div>
     <div><a class="download" href="https://github.com/zmehanna/gatekey-info/releases/download/android-latest/PrivateGateKey-Android.apk" download="PrivateGateKey-Android.apk" type="application/vnd.android.package-archive">⬇ Télécharger la dernière version APK</a></div>
+    <p class="small" id="android-release-meta" aria-live="polite">Dernière publication : 24 novembre 2026 · Version vérifiée automatiquement.</p>
     <div class="demo-actions"><a id="try-android" class="demo-link" role="button" aria-disabled="true" tabindex="-1">▷ Tester Android depuis Safari</a><span id="emulator-status" class="demo-status" role="status" aria-live="polite">Prévisualisation Android en préparation</span></div>
     <p class="small">Sur iPhone : le bouton « Tester Android » ouvre un Android virtuel en mode démonstration hors ligne, sans accès aux équipements. Il sera activé uniquement quand la version correspondante sera disponible.</p>
     <p class="small">APK de test Android · nécessite Android 9 ou ultérieur. La dernière version uniquement est hébergée par GitHub Releases. Pour remplacer un ancien APK de test, une désinstallation préalable peut être nécessaire si sa signature diffère. Cette opération supprime les comptes enregistrés localement : prévoyez une nouvelle invitation pour réactiver votre accès.</p>
@@ -91,7 +92,7 @@ h2{font-family:Georgia,serif;font-size:34px;font-weight:400;margin:6px 0 28px}
     <img src="/privategatekey-icon.png" alt="Icône PrivateGateKey">
     <div class="appname">Private<span>Gate</span>Key</div>
     <div class="caption">Accès privé et sécurisé</div>
-    <div class="bar"><span>Android · Bêta</span><span>Version 1.0.18</span></div>
+    <div class="bar"><span>Android · Bêta</span><span id="android-card-version">Version 1.0.29</span></div>
   </div>
 </section>
 <section class="section container">
@@ -143,6 +144,6 @@ h2{font-family:Georgia,serif;font-size:34px;font-weight:400;margin:6px 0 28px}
 </footer>
 <!-- PGK-SHARED-FOOTER:END -->
 <script src="/assets/js/site-shell.js" defer></script>
-<script src="/android/latest.js" defer></script>
+<script src="/android/latest.js?v=20261124" defer></script>
 </body>
 </html>
